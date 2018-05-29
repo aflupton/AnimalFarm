@@ -1,36 +1,42 @@
-import { Farm } from './../src/animalfarm.js';
+import { animal } from './../src/animalfarm.js';
 
 describe('Farm', function() {
-  let farm = new Farm("cow", 10);
+  let cows = animal;
 
   beforeEach(function() {
-    farm.foodLevel = 10;
     jasmine.clock().install();
-    farm.setHungry();
+    cows.foodLevel = 10;
+    cows.type = "cow";
+    cows.setHungry();
   });
   afterEach(function() {
     jasmine.clock().uninstall();
-    farm.foodLevel = 0;
+    cows.foodLevel = 0;
   });
   it('should have a type and a food level of 10 when created', function() {
-    expect(farm.type).toEqual("cow");
-    expect(farm.foodLevel).toEqual(10);
+    expect(cows.type).toEqual("cow");
+    expect(cows.foodLevel).toEqual(10);
   });
   it('should have a food level of 9 after 3001 milliseconds', function() {
     jasmine.clock().tick(3001);
-    expect(farm.foodLevel).toEqual(9);
+    expect(cows.foodLevel).toEqual(9);
   });
   it('should return true if food level reaches 0', function() {
-    farm.foodLevel = 0;
-    expect(farm.setChaos()).toEqual(true);
+    cows.foodLevel = 0;
+    expect(cows.setChaos()).toEqual(true);
   });
   it('should return true after 30 seconds', function() {
     jasmine.clock().tick(30001);
-    expect(farm.setChaos()).toEqual(true);
+    expect(cows.setChaos()).toEqual(true);
   });
   it('should return a foodLevel of 10 once it is fed', function() {
     jasmine.clock().tick(3001);
-    farm.feed();
-    expect(farm.foodLevel).toEqual(10);
+    cows.eatMedium();
+    expect(cows.foodLevel).toEqual(10);
+  });
+  it('should return a foodLevel of -10 once fed', function() {
+    jasmine.clock().tick(3001);
+    cows.eatYuck();
+    expect(cows.foodLevel).toEqual(-10);
   })
 });
