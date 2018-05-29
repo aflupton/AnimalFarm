@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { start } from './starter.js';
+import { Farm } from './animalfarm.js';
 
 $(document).ready(function() {
   $('#form').submit(function(event) {
@@ -10,4 +10,3 @@ $(document).ready(function() {
 
     });
   });
-});
